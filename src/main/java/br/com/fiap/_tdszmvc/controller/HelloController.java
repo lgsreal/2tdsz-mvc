@@ -20,11 +20,4 @@ public class HelloController {
         mv.addObject("message", "Hello World!");
         return mv;
     }
-
-    @GetMapping("/livro")
-    public String livro(Model model) {
-        Livro livro = new Livro("Odisseia", "Homero");
-        model.addAttribute("livro", livro);
-        return "livro";
-    }
 }

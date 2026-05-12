@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Livro</title>
+    <style>
+        .error{color: red}
+    </style>
+</head>
+<body>
+<div th:insert="~{fragments/header :: header}"></div>
+<div class="main_content">
+    <form method="post" th:action="@{/livros/cadastrar}" th:object="${livro}">
+        <h2>Cadastro de Livro</h2>
+        <input type="hidden" th:field="*{id}">
+        <br>
+        <div>
+            <label for="nome">Nome:</label> <input type="text" id="nome" th:field="*{nome}">
+            <p th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" th:errorclass="error"></p>
+        </div>
+        <div>
+            <label for="autoria">Autoria:</label> <input type="text" id="autoria" th:field="*{autoria}">
+            <p th:if="${#fields.hasErrors('autoria')}" th:errors="*{autoria}" th:errorclass="error"></p>
+        </div>
+        <div>
+            <label for="categoria">Categoria:</label>
+            <select id="categoria" th:field="*{categoria}">
+                <option value="" disabled selected>Selecione...</option>
+                <option th:each="cat : ${categoriaLista}" th:value="${cat}" th:text="${cat.descricao}"></option>
+            </select>
+            <p th:if="${#fields.hasErrors('categoria')}" th:errors="*{categoria}" th:errorclass="error"></p>
+        </div>
+        <div>
+            <label for="preco">Preço:</label> <input type="number" id="preco" th:field="*{preco}">
+            <p th:if="${#fields.hasErrors('preco')}" th:errors="*{preco}" th:errorclass="error"></p>
+        </div>
+        <div>
+            <label for="dataPublicacao">Data de Publicação:</label> <input type="date" id="dataPublicacao" th:field="*{dataPublicacao}">
+            <p th:if="${#fields.hasErrors('dataPublicacao')}" th:errors="*{dataPublicacao}" th:errorclass="error"></p>
+        </div>
+        <div>
+            <label for="isbn">ISBN:</label> <input type="text" id="isbn" th:field="*{isbn}">
+            <p th:if="${#fields.hasErrors('isbn')}" th:errors="*{isbn}" th:errorclass="error"></p>
+        </div>
+        <div>
+            <button type="submit">Salvar</button>
+        </div>
+    </form>
+</div>
+<div th:insert="~{fragments/footer :: footer}"></div>
+</body>
+</html>

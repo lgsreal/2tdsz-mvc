@@ -6,7 +6,9 @@
 </head>
 <body>
     <div th:fragment="header">
-        <h1>Conteúdo do Cabeçalho</h1>
+        <h1><span th:text="${#messages.msg('app.name')}"></span></h1>
+        <br>
+        <a th:href="@{/livros/lista}">Lista de Livros</a> | <a th:href="@{/livros/cadastro}">Cadastrar Livro</a> | <a href="?lang=pt_BR">BR</a> | <a href="?lang=en">EN</a>
         <hr/>
     </div>
 </body>
